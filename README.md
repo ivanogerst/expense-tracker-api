@@ -12,13 +12,33 @@ A simple REST API for managing personal expenses, built with FastAPI, SQLAlchemy
  
 ```
 expense-tracker/
-├── main.py         # API routes
-├── database.py     # DB connection and session
-├── models.py       # SQLAlchemy models
-├── schemas.py      # Pydantic schemas
-└── requirements.txt
+├── main.py
+├── database.py
+├── models.py
+├── schemas.py
+├── routers/
+│ ├── users.py
+│ ├── expenses.py
+│ └── auth.py
+├── requirements.txt
+└── .gitignore
 ```
 
+## API Endpoints
+
+### Expenses
+- POST /expenses/
+- GET /expenses/
+- GET /expenses/{id}
+- PUT /expenses/{id}
+- DELETE /expenses/{id}
+
+### Users
+- POST /users/
+- GET /users/
+- GET /users/{id}
+- PUT /users/{id}
+- DELETE /users/{id}
 
 ----------------------------------------------------
 
