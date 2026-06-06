@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import User
 from schemas import UserCreate, UserResponse
-from auth import hash_password, verify_password
+from routers.auth import hash_password, verify_password
 
 
 router = APIRouter(prefix="/users", tags=["users"])
@@ -42,10 +42,8 @@ def update_user(user_id: int, user: UserCreate, db: Session = Depends(get_db)):
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found.")
     hashed_password = hash_password(user.password)
-    db_user = User(
-        username = user.username,
-        password = hashed_password
-    )
+    db_user.username = user.username,
+    db_user.password = hashed_password
     db.commit()
     db.refresh(db_user)
     return db_user

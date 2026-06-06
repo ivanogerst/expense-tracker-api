@@ -3,6 +3,7 @@ from pydantic import BaseModel
 class ExpenseCreate(BaseModel):
     title: str
     amount: float
+    user_id: int
     
 class ExpenseResponse(BaseModel):
     id: int

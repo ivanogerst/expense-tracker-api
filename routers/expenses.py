@@ -27,6 +27,11 @@ def read_expense(expense_id: int, db: Session = Depends(get_db)):
 def read_all_expenses(db: Session = Depends(get_db)):
     return db.query(Expense).all()
 
+@router.get("/user/{user_id}", response_model=list[ExpenseResponse])
+def read_expenses_by_user(user_id: int, db: Session = Depends(get_db)):
+    db_expenses = db.query(Expense).filter(Expense.user_id == user_id).all()
+    return db_expenses
+
 @router.put("/{expense_id}", response_model=ExpenseResponse)
 def update_expense(expense_id: int, expense: ExpenseCreate, db: Session = Depends(get_db)):
     db_expense = db.query(Expense).filter(Expense.id == expense_id).first()
