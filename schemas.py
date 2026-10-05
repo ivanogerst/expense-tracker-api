@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pydantic import ConfigDict
 
 class ExpenseCreate(BaseModel):
     title: str
@@ -10,8 +11,7 @@ class ExpenseResponse(BaseModel):
     title: str
     amount: float
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
         
         
 class UserCreate(BaseModel):
@@ -23,5 +23,9 @@ class UserResponse(BaseModel):
     id: int
     username: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
+        
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
